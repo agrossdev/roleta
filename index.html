@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta AgRoss</title>
+    <!-- Favicon para diferentes dispositivos e navegadores -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#4c9c4c">
+</head>
+<body>
+    <!-- Container principal da aplicação -->
+    <div class="container fade-in">
+        <!-- Título principal com animação -->
+        <div class="main-title">
+            <!-- <h1>Roleta AgRoss</h1> -->
+             <img src="./img/logo.png" alt="Logo da TV Bio AgRoss">
+        </div>
+
+        <!-- Conteúdo principal dividido em duas seções -->
+        <div class="main-content">
+            <!-- Seção de controles (lado esquerdo) -->
+            <div class="controls-section">
+                <h2 class="section-title">
+                    📝 Participantes
+                </h2>
+                
+                <!-- Grupo de entrada de nomes -->
+                <div class="input-group">
+                    <label class="input-label" for="nameTextArea">
+                        Digite os nomes dos participantes (um por linha)
+                    </label>
+                    <div style="position: relative;">
+                        <textarea id="nameTextArea" placeholder="João Silva Maria Santos Pedro Costa Ana Oliveira..."
+                            rows="8"
+                        ></textarea>
+                        <!-- Overlay para destacar o ganhador na lista -->
+                        <div class="winner-highlight-overlay" id="winnerHighlight"></div>
+                    </div>
+                </div>
+
+                <!-- Botão para girar a roleta -->
+                <button class="spin-button" id="spinButton">
+                    🎲 Girar Roleta
+                </button>
+            </div>
+
+            <!-- Seção da roleta (lado direito) -->
+            <div class="wheel-section">
+                <div class="wheel-container">
+                    <!-- Canvas onde a roleta será desenhada -->
+                    <canvas id="wheelCanvas" width="400" height="400"></canvas>
+                    <!-- Ponteiro que indica o ganhador -->
+                    <div class="wheel-pointer"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display do resultado do sorteio -->
+        <div class="winner-display" id="winnerDisplay">
+            <div class="winner-prefix" id="winnerPrefix"></div>
+            <div class="winner-name" id="winnerName"></div>
+        </div>
+    </div>
+
+    <!-- Container para efeitos de confetes -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <div id="resultado"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
