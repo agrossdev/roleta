@@ -313,6 +313,13 @@
             /* text-shadow: 0 0 20px rgba(241, 196, 15, 0.5); */
             animation: glow 2s ease-in-out infinite alternate;
         }
+        .winner-city,.winner-unit{ 
+            font-size: clamp(2rem, 5vw, 2rem);
+            color: #ea3b36;
+            animation: glow 2s ease-in-out infinite alternate;
+            font-weight: 800;
+        }
+        
 
         /* Animação de brilho do nome vencedor */
         @keyframes glow {

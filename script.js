@@ -8,7 +8,7 @@
             minSpins: 5, // Número mínimo de voltas completas
             maxSpins: 8, // Número máximo de voltas completas
             textColor: '#2c3e50',
-            maxNameLength: 36 // Tamanho máximo do nome na entrada e roleta
+            maxNameLength: 7 // Tamanho máximo do nome na entrada e roleta
         };
 
         // Configurações de áudio (geramos sons usando Web Audio API)
@@ -25,6 +25,9 @@
             spinButton: document.getElementById('spinButton'),
             nameTextArea: document.getElementById('nameTextArea'),
             winnerDisplay: document.getElementById('winnerDisplay'),
+            winnerState: document.getElementById('winnerState'),
+            winnerCity: document.getElementById('winnerCity'),
+            winnerUnit: document.getElementById('winnerUnit'),
             winnerPrefix: document.getElementById('winnerPrefix'),
             winnerName: document.getElementById('winnerName'),
             winnerHighlight: document.getElementById('winnerHighlight'),
@@ -38,6 +41,8 @@
         /* Variáveis que controlam o estado atual da aplicação */
         let wheelState = {
             names: [],              // Lista de nomes dos participantes
+            estados: [],              // Lista de nomes dos participantes
+            cidades: [],              // Lista de nomes dos participantes
             numSegments: 0,         // Número de segmentos na roleta
             anglePerSegment: 0,     // Ângulo de cada segmento
             currentRotation: 0,     // Rotação atual da roleta
@@ -154,6 +159,7 @@
                 : name;
         }
 
+        
         // Obtém a lista de nomes válidos da textarea
         function getNamesFromTextArea() {
             const text = elements.nameTextArea.value.trim();
@@ -162,18 +168,59 @@
             return text.split('\n')
                       .map(name => name.trim())
                       .filter(name => name.length > 0)
-                      .map(name => truncateName(name))
+                      .map(name => name)
                       .slice(0, 50); // Limite máximo de 50 nomes
         }
 
+        // Array de nomes
+            const arrayNomes = [
+                {nome:"CASA DO AGRICULTOR SAO JUDAS TADEU",unidade:"Pouso Alegre",cidade:"PEDRALVA",estado:"MG"},
+                {nome:"L J COMERCIO DE ADUBOS",unidade:"Petrolina",cidade:"CHA GRANDE",estado:"PE"},
+                {nome:"COPEL COMERCIAL AGRO PECUARIA",unidade:"Sete Lagoas",cidade:"ARAGUARI",estado:"BA"},
+                {nome:"FERREIRA & GIANNINI COM E REPRES PROD AGRICOLAS",unidade:"Pouso Alegre",cidade:"PEDRALVA",estado:"MG"},
+                {nome:"VETERINARIA NAKAO",unidade:"Lins",cidade:"URANIA",estado:"SP"},
+            ];
+        // Pegando os estados
+            function getEstados(entrada){
+                    estados = [];
+                    if(entrada){
+                        entrada.forEach(element => {
+                            estados.push(element.estado);
+                        });
+                    }
+                    return estados;
+            }
+        // Pegando unidades
+            function getUnidades(entrada){
+                    unidades = [];
+                    if(entrada){
+                        entrada.forEach(element => {
+                            unidades.push(element.unidade);
+                        });
+                    }
+                    return unidades;
+            }
+        // Cidades
+            function getCidades(entrada){
+                    cidades = [];
+                    if(entrada){
+                        entrada.forEach(element => {
+                            cidades.push(element.cidade);
+                        });
+                    }
+                    return cidades;
+            }
         // Atualiza os dados da roleta baseado nos nomes inseridos
-        function updateWheelData() {
-            wheelState.names = getNamesFromTextArea();
-            wheelState.numSegments = wheelState.names.length;
-            wheelState.anglePerSegment = wheelState.numSegments > 0 
-                ? (2 * Math.PI) / wheelState.numSegments 
-                : 0;
-        }
+            function updateWheelData() {
+                wheelState.names = getNamesFromTextArea();
+                wheelState.estados = getEstados(arrayNomes);
+                wheelState.cidades = getCidades(arrayNomes);
+                wheelState.unidades = getUnidades(arrayNomes);
+                wheelState.numSegments = wheelState.names.length;
+                wheelState.anglePerSegment = wheelState.numSegments > 0 
+                    ? (2 * Math.PI) / wheelState.numSegments 
+                    : 0;
+            }
 
         // ===== FUNÇÕES DE DESTAQUE DO GANHADOR =====
         /* Funções para destacar o nome do ganhador na lista */
@@ -185,7 +232,7 @@
             const paddingTop = parseInt(window.getComputedStyle(elements.nameTextArea).paddingTop);
             
             for (let i = 0; i < lines.length; i++) {
-                const processedLine = truncateName(lines[i].trim());
+                const processedLine = lines[i].trim();
                 if (processedLine === targetName && lines[i].trim().length > 0) {
                     return {
                         top: paddingTop + (lineHeight * i),
@@ -256,7 +303,7 @@
             const fontSize = Math.max(10, 16 - (wheelState.numSegments * 0.3));
             ctx.font = `bold ${fontSize}px ${getComputedStyle(document.body).fontFamily}`;
             
-            ctx.fillText(name, CANVAS_CONFIG.textRadius, 0);
+            ctx.fillText(truncateName(name), CANVAS_CONFIG.textRadius, 0);
             ctx.restore();
         }
 
@@ -353,11 +400,16 @@
                 const normalizedRotation = (360 - (wheelState.currentRotation % 360)) % 360;
                 const winnerIndex = Math.floor(normalizedRotation / (360 / wheelState.numSegments));
                 const winner = wheelState.names[winnerIndex];
+                const state = wheelState.estados[winnerIndex];
+                const units = wheelState.unidades[winnerIndex];
+                const citys = wheelState.cidades[winnerIndex];
                 
                 if (winner) {
                     // Exibe o resultado
                     elements.winnerPrefix.textContent = '🎉 O vencedor é:';
                     elements.winnerName.textContent = winner;
+                    elements.winnerUnit.textContent = 'Unidade: '+units;
+                    elements.winnerCity.textContent = 'Cidade: '+citys;
                     elements.winnerDisplay.classList.add('visible');
                     
                     // Destaca o ganhador na lista
@@ -436,16 +488,45 @@
         
         // Inicialização da aplicação
         function initializeApp() {
-            // Adiciona nomes de exemplo
-            elements.nameTextArea.value = `João Silva
+            const people = {
+            names: `João Silva
 Maria Santos
 Pedro Costa
 Ana Oliveira
 Carlos Mendes
 Lucia Ferreira
 Roberto Lima
-Gabriel Batista`;
+Gabriel Batista`};
+
+            const arrayNomes = [
+                {nome:"CASA DO AGRICULTOR SAO JUDAS TADEU",unidade:"Pouso Alegre",cidade:"PEDRALVA",estado:"MG"},
+                {nome:"L J COMERCIO DE ADUBOS",unidade:"Petrolina",cidade:"CHA GRANDE",estado:"PE"},
+                {nome:"COPEL COMERCIAL AGRO PECUARIA",unidade:"Sete Lagoas",cidade:"ARAGUARI",estado:"BA"},
+                {nome:"FERREIRA & GIANNINI COM E REPRES PROD AGRICOLAS",unidade:"Pouso Alegre",cidade:"PEDRALVA",estado:"MG"},
+                {nome:"VETERINARIA NAKAO",unidade:"Lins",cidade:"URANIA",estado:"SP"},
+            ];
+
             
+
+
+
+            let objNomes = '';
+            for(let nomes of arrayNomes){
+                
+                objNomes += nomes.nome+'\n';
+                
+            }
+            // console.log(objNomes);
+            // Adiciona nomes de exemplo
+            elements.nameTextArea.value = objNomes;
+            // elements.nameTextArea.value = `João Silva (Pouso Alegre)
+            // Maria Santos
+            // Pedro Costa
+            // Ana Oliveira
+            // Carlos Mendes
+            // Lucia Ferreira
+            // Roberto Lima
+            // Gabriel Batista`;     
             // Configura o estado inicial
             updateWheelData();
             drawWheel();
