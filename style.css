@@ -42,7 +42,7 @@
         body {
             font-family: var(--font-family);
             /* background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%); */
-            background: linear-gradient(135deg, #ed6334 0%, #f4b22f 100%);
+            background: linear-gradient(135deg, #9bcb9b 0%, #37bf83 100%);
             min-height: 100vh;
             color: var(--text-light);
             overflow-x: hidden;
