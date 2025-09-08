@@ -5,8 +5,8 @@
         const WHEEL_CONFIG = {
             colors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'],
             spinDuration: 4000, // Duração do giro em milissegundos
-            minSpins: 5, // Número mínimo de voltas completas
-            maxSpins: 8, // Número máximo de voltas completas
+            minSpins: 8, // Número mínimo de voltas completas
+            maxSpins: 25, // Número máximo de voltas completas
             textColor: '#2c3e50',
             maxNameLength: 7 // Tamanho máximo do nome na entrada e roleta
         };
