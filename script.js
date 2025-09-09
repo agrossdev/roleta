@@ -4,11 +4,12 @@
         // Configurações da roleta
         const WHEEL_CONFIG = {
             colors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'],
-            spinDuration: 4000, // Duração do giro em milissegundos
+            spinDuration: 7000, // Duração do giro em milissegundos
             minSpins: 8, // Número mínimo de voltas completas
             maxSpins: 25, // Número máximo de voltas completas
             textColor: '#2c3e50',
-            maxNameLength: 7 // Tamanho máximo do nome na entrada e roleta
+            maxNameLength: 7, // Tamanho máximo do nome na entrada e roleta
+            maxNameLengthTextArea: 76 // Tamanho máximo do nome na entrada e roleta
         };
 
         // Configurações de áudio (geramos sons usando Web Audio API)
@@ -455,7 +456,8 @@
             
             for (let i = 0; i < lines.length; i++) {
                 if (lines[i].length > WHEEL_CONFIG.maxNameLength) {
-                    lines[i] = lines[i].substring(0, WHEEL_CONFIG.maxNameLength);
+                    // lines[i] = lines[i].substring(0, WHEEL_CONFIG.maxNameLength);
+                    lines[i] = lines[i].substring(0, WHEEL_CONFIG.maxNameLengthTextArea);
                     hasChanged = true;
                 }
             }
