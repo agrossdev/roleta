@@ -2,10 +2,10 @@
 const WHEEL_CONFIG = {
     colors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'],
     spinDuration: 5000, // duração do giro em ms (aumentei para suavizar)
-    minSpins: 5, // voltas mínimas
-    maxSpins: 8, // voltas máximas
+    minSpins: 10, // voltas mínimas
+    maxSpins: 28, // voltas máximas
     textColor: '#2c3e50',
-    maxNameLength: 36
+    maxNameLength: 66
 };
 
 // Config extra para suavizar
@@ -262,7 +262,7 @@ function spinWheel() {
                     {nome:"FERREIRA & GIANNINI COM E REPRES PROD AGRICOLAS",unidade:"Pouso Alegre",cidade:"ESPIRITO SANTO DO DOURADO",estado:"MG"},
                     {nome:"VETERINARIA NAKAO",unidade:"Lins",cidade:"URANIA",estado:"SP"},
                 ];
-                if(winnerIndex > arrayNomes.length){
+                if(winnerIndex >= arrayNomes.length){
                     elements.winnerUnit.textContent = 'Unidade: ';
                     elements.winnerCity.textContent = 'Cidade: ';
                 }
@@ -278,8 +278,8 @@ function spinWheel() {
                 // else if(winnerIndex > arrayNomes.length){
                 //     console.log("Não existem dados cadastrados");
                 // }
-                console.log(winnerIndex);
-                console.log(arrayNomes.length);
+                console.log('Ganhador '+winner+' '+winnerIndex);
+
 
                 highlightWinnerInList(winner);
                 playWinSound();
