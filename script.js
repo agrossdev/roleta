@@ -28,6 +28,9 @@ const elements = {
     winnerDisplay: document.getElementById('winnerDisplay'),
     winnerPrefix: document.getElementById('winnerPrefix'),
     winnerName: document.getElementById('winnerName'),
+    winnerState: document.getElementById('winnerState'),
+    winnerCity: document.getElementById('winnerCity'),
+    winnerUnit: document.getElementById('winnerUnit'),
     winnerHighlight: document.getElementById('winnerHighlight'),
     confettiContainer: document.getElementById('confettiContainer')
 };
@@ -259,12 +262,24 @@ function spinWheel() {
                     {nome:"FERREIRA & GIANNINI COM E REPRES PROD AGRICOLAS",unidade:"Pouso Alegre",cidade:"ESPIRITO SANTO DO DOURADO",estado:"MG"},
                     {nome:"VETERINARIA NAKAO",unidade:"Lins",cidade:"URANIA",estado:"SP"},
                 ];
-                if(winner == arrayNomes[winnerIndex].nome){
-                    console.log(arrayNomes[winnerIndex].estado);
+                if(winnerIndex > arrayNomes.length){
+                    elements.winnerUnit.textContent = 'Unidade: ';
+                    elements.winnerCity.textContent = 'Cidade: ';
                 }
-                else{
-                    console.log("é diferente");
+                else if(winner == arrayNomes[winnerIndex].nome){
+                    elements.winnerUnit.textContent = 'Unidade: '+arrayNomes[winnerIndex].unidade;
+                    elements.winnerCity.textContent = 'Cidade: '+arrayNomes[winnerIndex].cidade;
                 }
+                // if(winner == arrayNomes[winnerIndex].nome){
+                //     console.log(arrayNomes[winnerIndex].estado);
+                //     elements.winnerUnit.textContent = 'Unidade: '+arrayNomes[winnerIndex].unidade;
+                //     elements.winnerCity.textContent = 'Cidade: '+arrayNomes[winnerIndex].cidade;
+                // }
+                // else if(winnerIndex > arrayNomes.length){
+                //     console.log("Não existem dados cadastrados");
+                // }
+                console.log(winnerIndex);
+                console.log(arrayNomes.length);
 
                 highlightWinnerInList(winner);
                 playWinSound();
