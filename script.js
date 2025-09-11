@@ -1,7 +1,7 @@
 // ===== CONFIGURAÇÕES GERAIS =====
 const WHEEL_CONFIG = {
     colors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'],
-    spinDuration: 5000, // duração do giro em ms (aumentei para suavizar)
+    spinDuration: 15000, // duração do giro em ms (aumentei para suavizar)
     minSpins: 10, // voltas mínimas
     maxSpins: 28, // voltas máximas
     textColor: '#2c3e50',
@@ -10,7 +10,7 @@ const WHEEL_CONFIG = {
 
 // Config extra para suavizar
 const SPIN_CONFIG = {
-    easing: t => 1 - Math.pow(1 - t, 3), // easeOutCubic
+    easing: t => 1 - Math.pow(1 - t, 4), // easeOutCubic
 };
 
 // Configurações de áudio
