@@ -256,11 +256,12 @@ function spinWheel() {
 
                 // Array com os nomes para pegar a unidade e a cidade
                 const arrayNomes = [
-                    {nome:"CASA DO AGRICULTOR SAO JUDAS TADEU",unidade:"Pouso Alegre",cidade:"PEDRALVA",estado:"MG"},
-                    {nome:"L J COMERCIO DE ADUBOS",unidade:"Petrolina",cidade:"CHA GRANDE",estado:"PE"},
-                    {nome:"COPEL COMERCIAL AGRO PECUARIA",unidade:"Sete Lagoas",cidade:"ARAGUARI",estado:"MG"},
-                    {nome:"FERREIRA & GIANNINI COM E REPRES PROD AGRICOLAS",unidade:"Pouso Alegre",cidade:"ESPIRITO SANTO DO DOURADO",estado:"MG"},
-                    {nome:"VETERINARIA NAKAO",unidade:"Lins",cidade:"URANIA",estado:"SP"},
+                    {nome:"VIA PLUS DO BRASIL COM  E ASSIST TECNICA PILAR EIRELI",unidade:"Paulinia",cidade:"PILAR DO SUL",estado:"SP"},
+                    {nome:"ALESSANDRO DE OLIVEIRA",unidade:"Carazinho",cidade:"CHUVISCA",estado:"RS"},
+                    {nome:"CASA DO PRODUTOR RURAL DE JANAUBA LTDA",unidade:"Sete Lagoas",cidade:"JANAUBA",estado:"MG"},
+                    {nome:"CAMPO VERDE LTDA",unidade:"Recife",cidade:"SAIRE",estado:"PE"},
+                    {nome:"RURAL AGRICOLA LTDA ME",unidade:"Paulinia",cidade:"BANDEIRANTES",estado:"SP"},
+                    {nome:"HORTISUL PRODUTOS AGRICOLAS LTDA",unidade:"Paulinia",cidade:"GUAPIARA",estado:"SP"},
                 ];
                 if(winnerIndex >= arrayNomes.length){
                     elements.winnerUnit.textContent = 'Unidade: ';
@@ -302,7 +303,7 @@ elements.nameTextArea.addEventListener('input', () => {
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
-    elements.nameTextArea.value = `CASA DO AGRICULTOR SAO JUDAS TADEU\nL J COMERCIO DE ADUBOS\nCOPEL COMERCIAL AGRO PECUARIA\nFERREIRA & GIANNINI COM E REPRES PROD AGRICOLAS\nVETERINARIA NAKAO`;
+    elements.nameTextArea.value = `VIA PLUS DO BRASIL COM  E ASSIST TECNICA PILAR EIRELI\nALESSANDRO DE OLIVEIRA\nCASA DO PRODUTOR RURAL DE JANAUBA LTDA\nCAMPO VERDE LTDA\nRURAL AGRICOLA LTDA ME\nHORTISUL PRODUTOS AGRICOLAS LTDA`;
     updateWheelData();
     drawWheel();
     console.log('🎯 Roleta inicializada!');
